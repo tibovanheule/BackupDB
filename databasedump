@@ -1,0 +1,11 @@
+#!/bin/bash
+
+
+
+# Make unique filename
+filename =$(date +"%d_%m_%Y_%H")
+
+
+# --defaults-extra-file=/etc/mysqldump.cnf is used so other users on the system can't see your credentials when using "ps -aux"
+mysqldump --defaults-extra-file=/etc/mysqldump.cnf --all-databases --events | openssl smime -encrypt -binary -text -aes256 -out "/backup/dump_$filename.sql.enc" -outform DER /etc/mysqldump-secure.pub.pem
+
