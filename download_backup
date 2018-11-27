@@ -1,0 +1,15 @@
+#!/bin/bash 
+# Download the backup to the following loaction
+location = 
+# ssh host
+host = 
+# shh port
+port = 
+# shh username
+username = 
+# ssh password
+password =
+#de laatste backup filename
+filename =$(date +"%d_%m_%Y")
+
+sftp "$username@$host:dump_$filename.sql.enc" /backup
